@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/yawarakaijs/yawarakai-musicshare/issues"
   },
-  "homepage": "https://github.com/yawarakaijs/yawarakai-musicshare#readme"
+  "homepage": "https://github.com/yawarakaijs/yawarakai-musicshare#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "node-id3": "^0.1.16"
+  }
 }
