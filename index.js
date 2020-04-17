@@ -1,5 +1,5 @@
 const axios = require("axios")
-const Compo = require("../../component")
+const Compo = require("../../../component")
 const fs = require('fs')
 const path = require('path')
 const http = require('http')
