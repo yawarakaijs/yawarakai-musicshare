@@ -85,16 +85,16 @@ let main = {
                             audio_url: resArray[0].data.data[0].url,
                             caption: resArray[1].data.songs[0].name + titleAlias + "\n" + authorText + "\n" + dataArray[0].data.album.name + albumAlias + `\n#yawarakai #s${params.id}`,
                             reply_markup: {
-                                inline_keyboard: [[
-                                    {
-                                        text: "Open in Browser",
-                                        url: `https://music.163.com/song/?id=${params.id}`
-                                    },
-                                    {
+                                inline_keyboard: [
+                                    [{
                                         text: "Open in CloudMusic",
                                         url: `https://m.music.163.com/m/applink/?scheme=orpheus://song/${params.id}`
-                                    }
-                                ]]
+                                    }],
+                                    [{
+                                        text: "Open in Browser",
+                                        url: `https://music.163.com/song/?id=${params.id}`
+                                    }]
+                                ]
                             }
                         }],
                         track: {
@@ -607,8 +607,12 @@ exports.commands = {
                         ])
                     }
                     keys.push([{
-                        text: "Open in App",
+                        text: "Open in CloudMusic",
                         url: `https://music.163.com/playlist?id=${params.id}`
+                    }])
+                    keys.push([{
+                        text: "Open in Browser",
+                        url: `https://music.163.com/song/?id=${params.id}`
                     }])
                     this.telegram.sendMessage(context.ctx.message.chat.id, result.text, {
                         reply_markup: {
@@ -698,8 +702,12 @@ exports.commands = {
                     }
 
                     keys.push([{
-                        text: "Open in App",
+                        text: "Open in CloudMusic",
                         url: `https://music.163.com/album?id=${params.id}`
+                    }])
+                    keys.push([{
+                        text: "Open in Browser",
+                        url: `https://music.163.com/song/?id=${params.id}`
                     }])
                     this.telegram.sendMessage(context.ctx.message.chat.id, result.text, {
                         reply_markup: {
@@ -908,16 +916,16 @@ exports.inlines = {
                         thumb_url: "https://i.loli.net/2019/11/13/dQDxC4Nv91VYK2E.jpg",
                         input_message_content: { message_text: `实在是很抱歉呢，这个歌曲暂不可用，但是可以试试在 App 中打开\n#yawarakai #s${params.id}` },
                         reply_markup: {
-                            inline_keyboard: [[
-                                {
+                            inline_keyboard: [
+                                [{
+                                    text: "Open in CloudMusic",
+                                    url: `https://m.music.163.com/m/applink/?scheme=orpheus://song/${params.id}`
+                                }],
+                                [{
                                     text: "Open in Browser",
                                     url: `https://music.163.com/song/?id=${params.id}`
-                                },
-                                {
-                                    text: "Open in App",
-                                    url: `https://m.music.163.com/m/applink/?scheme=orpheus://song/${params.id}`
-                                }
-                            ]]
+                                }]
+                            ]
                         }
                     }]
                 }
@@ -997,8 +1005,12 @@ exports.callbackQuery = {
                     reply_markup: {
                         inline_keyboard: [
                             [{
-                                text: "Open in App",
+                                text: "Open in CloudMusic",
                                 url: `https://m.music.163.com/m/applink/?scheme=orpheus://song/${params.id}`
+                            }],
+                            [{
+                                text: "Open in Browser",
+                                url: `https://music.163.com/song/${params.id}`
                             }]
                         ]
                     }
