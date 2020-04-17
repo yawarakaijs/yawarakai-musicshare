@@ -1,6 +1,6 @@
 {
   "name": "@yawarakaijs/yawarakai-musicshare",
-  "version": "1.3.10",
+  "version": "1.3.11",
   "description": "Yawarakai component to sharing music and directly download for listening",
   "main": "index.js",
   "scripts": {
