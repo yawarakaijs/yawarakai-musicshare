@@ -530,28 +530,29 @@ let main = {
 
 exports.commands = {
     async netease(context) {
-        let args = context.args
-        let type = args[0]
+        context.telegram.sendMessage(context.ctx.from.id, "很抱歉哦，这个功能还没有做好，请再多等等开发者更新呢。")
+        // let args = context.args
+        // let type = args[0]
 
-        if (/(song)|(playlist)|(album)/i.test(type) && args.length >= 2) {
-            let keyword = new Array()
-            args.forEach(arg => keyword.push(arg))
-            keyword = keyword.join(" ")
+        // if (/(song)|(playlist)|(album)/i.test(type) && args.length >= 2) {
+        //     let keyword = new Array()
+        //     args.forEach(arg => keyword.push(arg))
+        //     keyword = keyword.join(" ")
 
-            switch (type) {
-                case "song":
+        //     switch (type) {
+        //         case "song":
 
-                    break
-                case "playlist":
+        //             break
+        //         case "playlist":
 
-                    break
-                case "album":
+        //             break
+        //         case "album":
 
-                    break
-            }
+        //             break
+        //     }
 
-            return result
-        }
+        //     return result
+        // }
 
         return undefined
     },
@@ -644,7 +645,9 @@ exports.commands = {
             else {
                 main.enterCount = 0
                 playlistScene.enter(context.ctx)
-                this.telegram.sendMessage(context.ctx.message.chat.id, "把网易云分享出来的整个文本或者歌单链接回复给我就好了哦，如果有很多个链接的话，只会读取第一个呢w", { reply_to_message_id: context.ctx.message.message_id })
+                this.telegram.sendMessage(context.ctx.message.chat.id, "把网易云分享出来的整个文本或者歌单链接回复给我就好了哦，如果有很多个链接的话，只会读取第一个呢w", { reply_to_message_id: context.ctx.message.message_id }).catch(err => {
+                    Log.Log.fatal(err)
+                })
                 main.enterCount = 1
             }
         }
@@ -744,7 +747,9 @@ exports.commands = {
             else {
                 main.enterCount = 0
                 albumScene.enter(context.ctx)
-                this.telegram.sendMessage(context.ctx.message.chat.id, "把网易云分享出来的整个文本或者专辑链接回复给我就好了哦，只读取第一个链接w", { reply_to_message_id: context.ctx.message.message_id })
+                this.telegram.sendMessage(context.ctx.message.chat.id, "把网易云分享出来的整个文本或者专辑链接回复给我就好了哦，只读取第一个链接w", { reply_to_message_id: context.ctx.message.message_id }).catch(err => {
+                    Log.Log.fatal(err)
+                })
                 main.enterCount = 1
             }
         }
