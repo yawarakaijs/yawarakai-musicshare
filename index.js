@@ -164,6 +164,8 @@ let main = {
                         }
                     }
 
+                    Compo.Interface.Log.Log.trace(data.file.audio)
+
                     return data
 
                 }).catch(err => {
@@ -343,13 +345,14 @@ let main = {
     parseArgs(link) {
         // type one
         // prefix cut
-        let domainName = /((^https?:\/\/)|(^))(music.163.com)/gumi
-        let desktopVersionPrefix = /(\/#)(\/m)?/gumi
+        let domainName = /((^https?:\/\/)|(^))(y.)?(music.163.com)/gumi
+        let desktopVersionPrefix = /(\/#)?(\/m)?/gumi
         let categoriesPrefix = /\/((song)|(album)|(playlist))/gumi
         // REPLACE
         link = link.replace(domainName, "")
         link = link.replace(desktopVersionPrefix, "")
 
+        Compo.Interface.Log.Log.debug(link)
         let result
 
         if (link.startsWith("/song")) {
@@ -898,7 +901,7 @@ exports.scenes = {
 
 exports.inlines = {
     async main(ctx) {
-        let globalUrlPattern = /((https?)?((:\/\/))?)(music.163.com)(\/)(#\/)?(m\/)?(song|album|playlist)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+        let globalUrlPattern = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(song|album|playlist)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
         let link = ctx.inlineQuery.query
 
         if (globalUrlPattern.test(link)) {
@@ -999,6 +1002,8 @@ exports.callbackQuery = {
                 })
 
                 if (data == undefined) { throw new Error() }
+                if (data.file == undefined) { throw new Error() }
+                if (data.file.audio == undefined) { throw new Error() }
 
                 Telegram.sendChatAction(callbackData.message.chat.id, "upload_audio")
                 let audioMessage = await Telegram.sendAudio(callbackData.message.chat.id, { source: fs.createReadStream(data.file.audio) }, {
