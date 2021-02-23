@@ -560,7 +560,7 @@ exports.commands = {
         return undefined
     },
     async playlist(context) {
-        let urlCheck = /((https?)?((:\/\/))?)(music.163.com)(\/)(#\/)?(m\/)?(playlist)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+        let urlCheck = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(playlist)(\?)(app_version=([0-9](\.)?){0,}&)?((\d+)|(id=\d+))(&textid=\d+)?((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?(&creatorId=\d+)?/gui
         let message = context.ctx.message.text
         let link = new Array()
 
@@ -656,7 +656,7 @@ exports.commands = {
         }
     },
     async album(context) {
-        let urlCheck = /((https?)?((:\/\/))?)(music.163.com)(\/)(#\/)?(m\/)?(album)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+        let urlCheck = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(album)(\?)(app_version=([0-9](\.)?){0,}&)?((\d+)|(id=\d+))(&textid=\d+)?((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?(&creatorId=\d+)?(&app_version=([0-9](\.)?){0,})?/gui
         let message = context.ctx.message.text
         let link = new Array()
 
@@ -770,7 +770,7 @@ exports.scenes = {
                 let ctx = context.ctx
                 let message = context.ctx.message.text
 
-                let urlCheck = /((https?)?((:\/\/))?)(music.163.com)(\/)(#\/)?(m\/)?(playlist)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+                let urlCheck = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(playlist)(\?)(app_version=([0-9](\.)?){0,}&)?((\d+)|(id=\d+))(&textid=\d+)?((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?(&creatorId=\d+)?/gui
 
                 let link = message.match(urlCheck)
                 if (link == null) {
@@ -838,7 +838,7 @@ exports.scenes = {
                 let ctx = context.ctx
                 let message = context.ctx.message.text
 
-                let urlCheck = /((https?)?((:\/\/))?)(music.163.com)(\/)(#\/)?(m\/)?(album)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+                let urlCheck = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(album)(\?)(app_version=([0-9](\.)?){0,}&)?((\d+)|(id=\d+))(&textid=\d+)?((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?(&creatorId=\d+)?(&app_version=([0-9](\.)?){0,})?/gui
 
                 let link = message.match(urlCheck)
                 if (link == null) {
@@ -901,7 +901,7 @@ exports.scenes = {
 
 exports.inlines = {
     async main(ctx) {
-        let globalUrlPattern = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(song|album|playlist)((\/\d+)|(\?id=\d+))((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?/gui
+        let globalUrlPattern = /((https?)?((:\/\/))?)(y.)?(music.163.com)(\/)(#\/)?(m\/)?(song|album|playlist)(\?)(app_version=([0-9](\.)?){0,}&)?((\d+)|(id=\d+))(&textid=\d+)?((&userid=\d+)|(\/\?userid=\d+)|(\/\d+\/(\?userid=\d+)?)|(\/\d+\/)|(\/))?(&creatorId=\d+)?/gui
         let link = ctx.inlineQuery.query
 
         if (globalUrlPattern.test(link)) {
